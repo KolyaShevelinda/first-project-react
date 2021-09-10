@@ -1,27 +1,26 @@
 import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import {useDispatch} from 'react-redux'
+import {addTodo} from "../redux/actions/todos.actions";
 
-function AddTodo({onCreate}) {
-    const [value, setValue] = useState('')
+function AddTodo() {
+    const dispatch = useDispatch();
+    const [value, setValue] = useState('');
 
-    function submitHandler(event) {
-        event.preventDefault()
-
-        if (value.trim()) {
-            onCreate(value)
-        }
+    function createTodo(event) {
+        event.preventDefault();
+        dispatch(addTodo({
+            title: value,
+            id: Date.now(),
+            completed: false
+        }))
     }
 
     return (
-        <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
-            <input value={value} onChange={event => setValue(event.target.value)} />
+        <form style={{marginBottom: '1rem'}} onSubmit={createTodo}>
+            <input value={value} onChange={event => setValue(event.target.value)}/>
             <button type='submit'>Add todo</button>
         </form>
     )
-}
-
-AddTodo.propTypes = {
-    onCreate: PropTypes.func.isRequired
 }
 
 export default AddTodo
