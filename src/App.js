@@ -1,15 +1,13 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import TodoList from "./Todo/TodoList"
 import Context from "./context"
 import AddTodo from "./Todo/AddTodo";
 
 function App() {
-    const [todos, setTodos] = React.useState([
-        {id: 1, completed: false, title: 'Купить хлеб'},
-        {id: 2, completed: false, title: 'Купить масло'},
-        {id: 3, completed: false, title: 'Купить молоко'},
-        {id: 4, completed: false, title: 'Купить соль'}
-    ])
+    const todoList = useSelector(state => state.todos)
+    console.log(todoList)
+    const [todos, setTodos] = React.useState()
 
     function toggleTodo(id) {
         setTodos(
@@ -25,22 +23,14 @@ function App() {
     function removeTodo(id) {
         setTodos(todos.filter(todo => todo.id !== id))
     }
-    
-    function addTodo(title) {
-        setTodos(todos.concat([{
-            title,
-            id: Date.now(),
-            completed: false
-        }]))
-    }
 
     return (
-        <Context.Provider value={{removeTodo}}>
+        <Context.Provider value={{removeTodo, toggleTodo}}>
             <div className="wrapper">
                 <h1>React tutorial</h1>
-                <AddTodo onCreate={addTodo} />
-                {todos.length ? (
-                    <TodoList todos={todos} onToggle={toggleTodo} />) : (<p>No todos!!!</p>
+                <AddTodo />
+                {todoList.length ? (
+                    <TodoList todos={todoList} />) : (<p>No todos!!!</p>
                 )}
             </div>
         </Context.Provider>
