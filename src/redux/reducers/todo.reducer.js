@@ -1,12 +1,10 @@
-import {ADD_TODO} from "../actionTypes";
+import {ADD_TODO,
+        REMOVE_TODO,
+        TOGGLE_TODO}
+        from "../actionTypes";
 
 const INITIAL_STATE = {
-    todos: [
-        // {id: 1, completed: false, title: 'Купить хлеб'},
-        // {id: 2, completed: false, title: 'Купить масло'},
-        // {id: 3, completed: false, title: 'Купить молоко'},
-        // {id: 4, completed: false, title: 'Купить соль'}
-    ]
+    todos: []
 };
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
@@ -16,7 +14,23 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 todos: [...state.todos, action.payload]
             };
-        default: return state
+        case TOGGLE_TODO:
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.payload) {
+                        todo.completed = !todo.completed
+                    }
+                    return todo
+                })
+            };
+        case REMOVE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload)
+            };
+        default:
+            return state
     }
 };
 

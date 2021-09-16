@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import Context from "../context"
+import {useDispatch} from "react-redux";
+import {removeTodo, toggleTodo} from "../redux/actions/todos.actions";
 
 const styles = {
     li: {
@@ -17,12 +18,20 @@ const styles = {
     }
 }
 
-function TodoItem({todo, index, onChange}) {
-    const  {removeTodo} = useContext(Context)
+function TodoItem({todo, index}) {
+    const dispatch = useDispatch();
     const classes = []
 
     if (todo.completed) {
         classes.push('done')
+    }
+
+    function updateTodo(id) {
+        dispatch(toggleTodo(id))
+    }
+
+    function deleteTodo(id) {
+        dispatch(removeTodo(id))
     }
 
     return (
@@ -32,20 +41,19 @@ function TodoItem({todo, index, onChange}) {
                     type="checkbox"
                     checked={todo.completed}
                     style={styles.input}
-                    onChange={() => onChange(todo.id)} />
+                    onChange={() => updateTodo(todo.id)} />
                 <strong>{index + 1}</strong>
                 &nbsp;
                 {todo.title}
             </span>
-            <button className='rm' onClick={removeTodo.bind(null, todo.id)}>&times;</button>
+            <button className='rm' onClick={deleteTodo.bind(null, todo.id)}>&times;</button>
         </li>
     )
 }
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired,
-    index: PropTypes.number,
-    onChange: PropTypes.func.isRequired
+    index: PropTypes.number
 }
 
 export default TodoItem

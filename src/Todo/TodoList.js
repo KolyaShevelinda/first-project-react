@@ -1,8 +1,6 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import TodoItem from "./TodoItem";
-import Context from "../context";
-
 
 const styles = {
     ul: {
@@ -13,7 +11,6 @@ const styles = {
 }
 
 function TodoList(props) {
-    const {toggleTodo} = useContext(Context)
     return (
         <ul style={styles.ul}>
             {props.todos.map((todo, index) => {
@@ -21,7 +18,6 @@ function TodoList(props) {
                     todo={todo}
                     key={todo.id}
                     index={index}
-                    onChange={toggleTodo.bind(null, todo.id)}
                 />
             })}
         </ul>
