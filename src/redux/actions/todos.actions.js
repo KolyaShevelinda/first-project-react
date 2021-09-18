@@ -1,7 +1,9 @@
-import {ADD_TODO,
-        TOGGLE_TODO,
-        REMOVE_TODO}
-        from "../actionTypes";
+import {
+    ADD_TODO,
+    TOGGLE_TODO,
+    REMOVE_TODO
+}
+    from "../actionTypes";
 
 export const addTodo = (todo) => {
     return {

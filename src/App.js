@@ -1,5 +1,5 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React from "react"
+import {useSelector} from "react-redux"
 import TodoList from "./Todo/TodoList"
 import AddTodo from "./Todo/AddTodo";
 

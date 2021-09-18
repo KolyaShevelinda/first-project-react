@@ -1,7 +1,9 @@
-import {ADD_TODO,
-        REMOVE_TODO,
-        TOGGLE_TODO}
-        from "../actionTypes";
+import {
+    ADD_TODO,
+    REMOVE_TODO,
+    TOGGLE_TODO
+}
+    from "../actionTypes";
 
 const INITIAL_STATE = {
     todos: []
