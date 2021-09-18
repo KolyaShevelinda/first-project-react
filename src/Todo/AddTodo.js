@@ -58,7 +58,7 @@ function AddTodo() {
                 <DialogActions>
                     <form style={{marginBottom: '1rem'}} onSubmit={createTodo}>
                         <Button onClick={handleClose}>Cansel</Button>
-                        <Button type='submit'>Add todo</Button>
+                        <Button onClick={handleClose} type='submit'>Add todo</Button>
                     </form>
                  </DialogActions>
             </Dialog>
