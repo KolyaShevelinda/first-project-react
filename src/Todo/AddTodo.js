@@ -34,7 +34,7 @@ function AddTodo() {
     };
 
     return (
-        <form>
+        <div>
             <Button variant="contained" onClick={handleClickOpen}>
                 Add actions
             </Button>
@@ -45,6 +45,8 @@ function AddTodo() {
                         Input name add action
                     </DialogContentText>
                     <TextField
+                        value={value}
+                        onChange={event => setValue(event.target.value)}
                         autoFocus
                         margin="dense"
                         label="Add action"
@@ -54,15 +56,13 @@ function AddTodo() {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cansel</Button>
-                    <Button onClick={createTodo}
-                            value={value}
-                            onChange={event => setValue(event.target.value)}>
-                        Add todo
-                    </Button>
-                </DialogActions>
+                    <form style={{marginBottom: '1rem'}} onSubmit={createTodo}>
+                        <Button onClick={handleClose}>Cansel</Button>
+                        <Button type='submit'>Add todo</Button>
+                    </form>
+                 </DialogActions>
             </Dialog>
-        </form>
+        </div>
     )
 }
 
