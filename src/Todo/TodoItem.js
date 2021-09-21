@@ -2,6 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 import {removeTodo, toggleTodo} from "../redux/actions/todos.actions";
+import Checkbox from "@material-ui/core/Checkbox";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemText from "@material-ui/core/ListItemText";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ListItemButton from "@material-ui/core/ListItemButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Container from "@material-ui/core/Container";
+
 
 const styles = {
     li: {
@@ -13,14 +23,17 @@ const styles = {
         borderRadius: '5px',
         marginBottom: '.5rem'
     },
-    input: {
+    checked: {
         marginRight: '1rem'
     }
 }
 
 function TodoItem({todo, index}) {
     const dispatch = useDispatch();
-    const classes = []
+    const classes = [];
+    const label = {inputProps: {'aria-label': 'Checkbox'}};
+    const [dense, setDense] = React.useState(false);
+    const [secondary, setSecondary] = React.useState(false);
 
     if (todo.completed) {
         classes.push('done')
@@ -35,19 +48,28 @@ function TodoItem({todo, index}) {
     }
 
     return (
-        <li style={styles.li}>
-            <span className={classes.join(' ')}>
-                <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    style={styles.input}
-                    onChange={() => updateTodo(todo.id)} />
-                <strong>{index + 1}</strong>
-                &nbsp;
-                {todo.title}
-            </span>
-            <button className='rm' onClick={deleteTodo.bind(null, todo.id)}>&times;</button>
-        </li>
+        <Container maxWidth="md">
+            <List dense={dense}>
+                <ListItem
+                    secondaryAction={
+                        <IconButton edge="end" aria-label="comments" onClick={deleteTodo.bind(null, todo.id)}>
+                            <DeleteIcon color="primary"/>
+                        </IconButton>
+                    }
+                    disablePadding
+                >
+                    <ListItemButton role={undefined} dense>
+                        <ListItemIcon>
+                            <Checkbox {...label}
+                                      checked={todo.completed}
+                                      style={styles.checked}
+                                      onChange={() => updateTodo(todo.id)}/>
+                        </ListItemIcon>
+                        <ListItemText primary={todo.title} onClick={() => updateTodo(todo.id)}/>
+                    </ListItemButton>
+                </ListItem>
+            </List>
+        </Container>
     )
 }
 
