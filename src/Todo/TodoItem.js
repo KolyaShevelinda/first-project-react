@@ -32,8 +32,8 @@ function TodoItem({todo, index}) {
     const dispatch = useDispatch();
     const classes = [];
     const label = {inputProps: {'aria-label': 'Checkbox'}};
-    const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(false);
+    const [dense] = React.useState(false);
+    // const [secondary, setSecondary] = React.useState(false);
 
     if (todo.completed) {
         classes.push('done')
