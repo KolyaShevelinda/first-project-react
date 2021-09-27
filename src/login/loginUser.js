@@ -1,7 +1,8 @@
 import React from "react";
-// import {singIn} from "./LoginUser"
+import {singIn} from "./LoginUser";
 import {useForm} from "react-hook-form";
 import Button from "@material-ui/core/Button";
+
 
 const styles = {
     form: {
@@ -25,16 +26,16 @@ function LoginUser() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = (data) => console.log(data);
 
-    // function singIn(login, password) {
-    //     const correctLogin = 'kolyashevelinda@gmail.com';
-    //     const correctPassword = '123456789'
-    //
-    //     while (login !== correctLogin || password !== correctPassword) {
-    //         if (login !== correctLogin) {
-    //             continue
-    //         }
-    //     }
-    // }
+    function singIn(login, password) {
+        const correctLogin = 'kolyashevelinda@gmail.com';
+        const correctPassword = '123456789';
+
+        while (login !== correctLogin || password !== correctPassword) {
+            if (login !== correctLogin) {
+                continue
+            }
+        }
+    }
 
     return(
         <form style={styles.form } onSubmit={handleSubmit(onSubmit)}>
@@ -50,8 +51,8 @@ function LoginUser() {
             {errors.password?.type === 'required' && "Input correct password"}
             <Button style={styles.button}
                     variant="contained"
-                    type="submit" 
-                    // onClick={singIn()}
+                    type="submit"
+                    onClick={singIn()}
             >
                     Login
             </Button>
@@ -59,4 +60,4 @@ function LoginUser() {
     )
 }
 
-export default LoginUser
+export default LoginUser;
