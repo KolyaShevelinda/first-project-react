@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginUser from "./login/loginUser";
-import App from "./App";
+import Todos from "./Todos";
 
 
-export default function ProjectRoutes() {
+export default function Routes() {
   return (
     <Router>
       <Switch>
@@ -12,10 +12,12 @@ export default function ProjectRoutes() {
           <LoginUser />
         </Route>
         <Route path="/todos">
-          <App />
+          <Todos />
         </Route>
       </Switch>
     </Router>
-  )
+  );
 }
+
+
 

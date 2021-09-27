@@ -8,9 +8,9 @@ import ListItem from "@material-ui/core/ListItem";
 import IconButton from "@material-ui/core/IconButton";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from '@material-ui/icons/Delete';
-import ListItemButton from "@material-ui/core/ListItemButton";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Container from "@material-ui/core/Container";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 
 const styles = {
@@ -50,15 +50,7 @@ function TodoItem({todo, index}) {
     return (
         <Container maxWidth="md">
             <List dense={dense}>
-                <ListItem
-                    secondaryAction={
-                        <IconButton edge="end" aria-label="comments" onClick={deleteTodo.bind(null, todo.id)}>
-                            <DeleteIcon color="primary"/>
-                        </IconButton>
-                    }
-                    disablePadding
-                >
-                    <ListItemButton role={undefined} dense>
+                    <ListItem role={undefined} dense>
                         <ListItemIcon>
                             <Checkbox {...label}
                                       checked={todo.completed}
@@ -66,8 +58,12 @@ function TodoItem({todo, index}) {
                                       onChange={() => updateTodo(todo.id)}/>
                         </ListItemIcon>
                         <ListItemText primary={todo.title} onClick={() => updateTodo(todo.id)}/>
-                    </ListItemButton>
-                </ListItem>
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="comments" onClick={deleteTodo.bind(null, todo.id)}>
+                                <DeleteIcon color="primary"/>
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
             </List>
         </Container>
     )

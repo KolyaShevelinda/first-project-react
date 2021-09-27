@@ -5,14 +5,14 @@ import store from './redux/store'
 import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ProjectRoutes from "./route";
+import Routes from "./route";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={store}>
-      <ProjectRoutes />
+      <Routes/>
     </Provider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 

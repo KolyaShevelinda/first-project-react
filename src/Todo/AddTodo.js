@@ -40,7 +40,7 @@ function AddTodo() {
 
     return (
         <div>
-            <Button variant="contained" onClick={handleClickOpen}>
+            <Button variant="contained" color="primary" onClick={handleClickOpen}>
                 Добавить задачу
             </Button>
             <Dialog open={open} onClose={handleClose}>
