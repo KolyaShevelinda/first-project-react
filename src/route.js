@@ -9,14 +9,14 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <LoginUser />
+          <LoginUser/>
         </Route>
         <Route path="/todos">
-          <Todos />
+          <Todos/>
         </Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
 
