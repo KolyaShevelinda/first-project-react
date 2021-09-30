@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginUser() {
-    const history = useHistory;
+    const history = useHistory();
     const {handleSubmit} = useForm();
     const onSubmit = () => history.push("/todos");
     const classes = useStyles();

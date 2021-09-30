@@ -7,11 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import Routes from "./route";
 
 ReactDOM.render(
-  <React.Fragment>
+  <React.StrictMode>
     <Provider store={store}>
       <Routes/>
     </Provider>
-  </React.Fragment>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
