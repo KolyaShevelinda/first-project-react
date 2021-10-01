@@ -1,5 +1,5 @@
 import React from "react";
-import {useForm} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Container from "@material-ui/core/Container";
@@ -9,13 +9,13 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: '5rem',
+        marginTop: '50%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         border: '1px solid #cccccc',
         borderRadius: '10px',
-        boxShadow: '5px 5px 15px 5px #000000',
+        boxShadow: '2px 2px 7px 0px #000000',
         background: 'linear-gradient(to bottom, #B34E30 0%, #DDFFFF 0%, #99B5C5 100%)'
     },
     form: {
@@ -30,39 +30,73 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginUser() {
     const history = useHistory();
-    const {handleSubmit} = useForm();
+    const {handleSubmit, control} = useForm();
     const onSubmit = () => history.push("/todos");
     const classes = useStyles();
 
     return (
-        <Container maxWidth="xs">
+        <Container maxWidth ="xs">
             <CssBaseline>
-                <div className={classes.paper}>
-                    <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-                        <TextField variant="outlined"
-                                   margin="normal"
-                                   required
-                                   fullWidth
-                                   id="email"
-                                   label="Email Address"
-                                   name="email"
-                                   autoComplete="email"
-                                   autoFocus
+                <div className = {classes.paper}>
+                    <form className = {classes.form} onSubmit={handleSubmit(onSubmit)}>
+                        <Controller
+                                name = "Email Address"
+                                control = {control}
+                                defaultValue = ""
+                                render={({field: {onChange, value}, fieldState: { error }}) => (
+                                    <TextField variant = "outlined"
+                                               margin = "normal"
+                                               required
+                                               fullWidth
+                                               id = "email"
+                                               label = "Email Address"
+                                               name = "email"
+                                               autoComplete = "email"
+                                               autoFocus
+                                               type = "email"
+                                               value = {value}
+                                               onChange = {onChange}
+                                               error = {!!error}
+                                               helperText = {error ? error.message : null}
+                                    />
+                                )}
+                                rules={{
+                                    required: 'Введите Email Address',
+                                    // patern: {value: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/i,
+                                        patern: {value: "[^@\\s]+@[^@\\s]+\\.[^@\\s]+",
+                                        message: 'Не соответсевует формату электронной почты'}
+                                }}
                         />
-                        <TextField variant="outlined"
-                                   margin="normal"
-                                   required
-                                   fullWidth
-                                   id="password"
-                                   label="Password"
-                                   name="password"
-                                   autoComplete="current-password"
+                        <Controller
+                            name = "password"
+                            control = {control}
+                            defaultValue = ""
+                            render={({field: {onChange, value}, fieldState: { error }}) => (
+                                <TextField variant = "outlined"
+                                           margin = "normal"
+                                           required
+                                           fullWidth
+                                           id = "password"
+                                           label = "Password"
+                                           name = "password"
+                                           autoComplete = "current-password"
+                                           autoFocus
+                                           value={value}
+                                           onChange={onChange}
+                                           error={!!error}
+                                           helperText={error ? error.message : null}
+                                />
+                            )}
+                            rules={{
+                                required: 'Введите пароль',
+                                minLength: {value: 4, message: 'Введённый текст менее 4 букв'},
+                            }}
                         />
-                        <Button type="submit"
+                        <Button type = "submit"
                                 fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}> Sign In
+                                variant = "contained"
+                                color = "primary"
+                                className = {classes.submit}> Sign In
                         </Button>
                     </form>
                 </div>

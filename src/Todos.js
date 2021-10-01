@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router-dom";
 
 function Todos() {
-    const todoList = useSelector(state => state.todos)
+    const todoList = useSelector(state => state.todos);
     const history = useHistory();
 
     function logout() {
