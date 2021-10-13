@@ -22,7 +22,6 @@ function AddTodo() {
         dispatch(
             addTodo({
                 title: data.todo,
-                id: Date.now(),
                 completed: false
             })
         );

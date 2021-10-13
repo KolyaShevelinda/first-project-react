@@ -20,8 +20,7 @@ const styles = {
         alignItems: 'center',
         padding: '.5rem 1rem',
         border: '1px solid #ccc',
-        borderRadius: '5px',
-        marginBottom: '.5rem'
+        borderRadius: '5px'
     },
     checked: {
         marginRight: '1rem'
@@ -49,7 +48,7 @@ function TodoItem({todo, index}) {
     return (
         <Container maxWidth="md">
             <List dense={dense}>
-                    <ListItem role={undefined} dense>
+                    <ListItem style={styles.li} role={undefined} dense>
                         <ListItemIcon>
                             <Checkbox {...label}
                                       checked={todo.completed}

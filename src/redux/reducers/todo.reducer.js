@@ -1,7 +1,8 @@
 import {
     ADD_TODO,
     REMOVE_TODO,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    SET_TODOS
 }
     from "../actionTypes";
 
@@ -11,6 +12,11 @@ const INITIAL_STATE = {
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case SET_TODOS:
+            return  {
+                ...state,
+                todos: action.payload
+            };
         case ADD_TODO:
             return {
                 ...state,
