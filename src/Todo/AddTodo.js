@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {addTodo} from "../redux/actions/todos.actions";
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -8,6 +7,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import {useForm, Controller} from "react-hook-form";
+import {addTodoAsync} from "../redux/actions/todos.async.actions";
+import {addTodo} from "../redux/actions/todos.actions";
 
 function AddTodo() {
     const dispatch = useDispatch();
@@ -18,16 +19,22 @@ function AddTodo() {
         }
     });
 
-    function createTodo(data) {
-        dispatch(
-            addTodo({
-                title: data.todo,
-                completed: false
-            })
-        );
+    useEffect( function createTodo() {
+        dispatch(addTodoAsync(addTodo()));
         handleClose();
         reset()
-    }
+    }, [dispatch]);
+
+    // function createTodo(data) {
+    //     dispatch(
+    //         addTodo({
+    //             title: data.todo,
+    //             completed: false
+    //         })
+    //     );
+    //     handleClose();
+    //     reset()
+    // }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -69,7 +76,7 @@ function AddTodo() {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <form style={{marginBottom: '1rem'}} onSubmit={handleSubmit(createTodo)}>
+                    <form style={{marginBottom: '1rem'}} onSubmit={handleSubmit(addTodo)}>
                         <Button onClick={handleClose}>Cancel</Button>
                         <Button type='submit'>Add todo</Button>
                     </form>
