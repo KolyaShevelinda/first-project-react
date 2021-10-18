@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
-import {toggleTodo} from "../redux/actions/todos.actions";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Container from "@material-ui/core/Container";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import {removeTodoAsync} from "../redux/actions/todos.async.actions";
+import {removeTodoAsync, updateTodoAsync} from "../redux/actions/todos.async.actions";
 
 
 const styles = {
@@ -38,8 +37,8 @@ function TodoItem({todo, index}) {
         classes.push('done')
     }
 
-    function updateTodo(id) {
-        dispatch(toggleTodo(id))
+    function updateTodo(todo) {
+        dispatch(updateTodoAsync(todo))
     }
 
     function deleteTodo(id) {
@@ -54,9 +53,9 @@ function TodoItem({todo, index}) {
                             <Checkbox {...label}
                                       checked={todo.completed}
                                       style={styles.checked}
-                                      onChange={() => updateTodo(todo.id)}/>
+                                      onChange={() => updateTodo(todo)}/>
                         </ListItemIcon>
-                        <ListItemText primary={todo.title} onClick={() => updateTodo(todo.id)}/>
+                        <ListItemText primary={todo.title} onClick={() => updateTodo(todo)}/>
                         <ListItemSecondaryAction>
                             <IconButton edge="end" aria-label="comments" onClick={deleteTodo.bind(null, todo.id)}>
                                 <DeleteIcon color="primary"/>

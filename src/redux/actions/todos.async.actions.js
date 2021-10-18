@@ -1,4 +1,4 @@
-import {addTodo, removeTodo, setTodos} from "./todos.actions";
+import {addTodo, removeTodo, setTodos, toggleTodo} from "./todos.actions";
 
 export const getTodosAsync = () => {
     return async (dispatch) => {
@@ -53,6 +53,22 @@ export const  removeTodoAsync = (todoId) => {
 
         }
     };
+};
+
+export const updateTodoAsync = (todo) => {
+    const updatedTodo = {...todo, completed: !todo.completed};
+    return async (dispatch) => {
+        try {
+            await fetch(`https://todo-base-627f7-default-rtdb.firebaseio.com/todos/${todo.id}.json`, {
+                method: 'PUT',
+                body: JSON.stringify(updatedTodo)
+            });
+            dispatch(toggleTodo(todo.id))
+        }
+        catch (error) {
+
+        }
+    }
 };
 
 

@@ -33,7 +33,3 @@ export const setTodos = (todos) => {
         payload: todos
     }
 };
-
-
-
-
