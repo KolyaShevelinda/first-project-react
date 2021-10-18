@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
-import {removeTodo, toggleTodo} from "../redux/actions/todos.actions";
+import {toggleTodo} from "../redux/actions/todos.actions";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Container from "@material-ui/core/Container";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import {removeTodoAsync} from "../redux/actions/todos.async.actions";
 
 
 const styles = {
@@ -42,7 +43,7 @@ function TodoItem({todo, index}) {
     }
 
     function deleteTodo(id) {
-        dispatch(removeTodo(id))
+        dispatch(removeTodoAsync(id))
     }
 
     return (

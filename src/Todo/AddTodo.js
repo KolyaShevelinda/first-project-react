@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
@@ -7,8 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import {useForm, Controller} from "react-hook-form";
-// import {addTodoAsync} from "../redux/actions/todos.async.actions";
-import {addTodo} from "../redux/actions/todos.actions";
+import {addTodoAsync} from "../redux/actions/todos.async.actions";
 
 function AddTodo() {
     const dispatch = useDispatch();
@@ -19,16 +18,9 @@ function AddTodo() {
         }
     });
 
-    // useEffect( () => {
-    //     dispatch(addTodoAsync());
-    //     handleClose();
-    //     reset()
-    // }, [dispatch]);
-
-
     function createTodo(data) {
         dispatch(
-            addTodo({
+            addTodoAsync({
                 title: data.todo,
                 completed: false
             })

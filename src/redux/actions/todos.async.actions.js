@@ -1,4 +1,4 @@
-import {addTodo, setTodos} from "./todos.actions";
+import {addTodo, removeTodo, setTodos} from "./todos.actions";
 
 export const getTodosAsync = () => {
     return async (dispatch) => {
@@ -18,14 +18,19 @@ export const getTodosAsync = () => {
     };
 };
 
-export const addTodoAsync = () => {
+export const addTodoAsync = (todo) => {
     return async (dispatch) => {
         try {
             const response = await fetch('https://todo-base-627f7-default-rtdb.firebaseio.com/todos.json', {
                 method: 'POST',
                 body: JSON.stringify(todo)
             });
-            const todo = await response.json();
+            const data = await response.json();
+            todo.id = data.name;
+            await fetch(`https://todo-base-627f7-default-rtdb.firebaseio.com/todos/${todo.id}.json`, {
+                method: 'PUT',
+                body: JSON.stringify(todo)
+            });
 
             dispatch(addTodo(todo))
         }
@@ -35,22 +40,19 @@ export const addTodoAsync = () => {
     };
 };
 
-// export const  removeTodoAsync = () => {
-//     return async (dispatch) => {
-//         try {
-//
-//         }
-//         catch (error) {
-//
-//         }
-//     };
-// };
+export const  removeTodoAsync = (todoId) => {
+    return async (dispatch) => {
+        try {
+            await fetch(`https://todo-base-627f7-default-rtdb.firebaseio.com/todos/${todoId}.json`, {
+                method: 'DELETE',
+            });
 
-// return fetch('http://example.com/api/v1/registration', {
-//     method: 'POST', //save
-//     body: JSON.stringify(todo)
-// })
-//
-// return fetch('http://example.com/api/v1/registration', {
-//     method: 'DELETE',
-// })
+            dispatch(removeTodo(todoId))
+        }
+        catch (error) {
+
+        }
+    };
+};
+
+
