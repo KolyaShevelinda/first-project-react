@@ -35,16 +35,16 @@ export const addTodoAsync = () => {
     };
 };
 
-export const  removeTodoAsync = () => {
-    return async (dispatch) => {
-        try {
-
-        }
-        catch (error) {
-
-        }
-    };
-};
+// export const  removeTodoAsync = () => {
+//     return async (dispatch) => {
+//         try {
+//
+//         }
+//         catch (error) {
+//
+//         }
+//     };
+// };
 
 // return fetch('http://example.com/api/v1/registration', {
 //     method: 'POST', //save
