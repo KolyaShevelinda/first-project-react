@@ -9,8 +9,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router-dom";
 import {getTodosAsync} from "./redux/actions/todos.async.actions";
-
-
+import CircProgress from "./Todo/CircularProgress";
 
 function Todos() {
     const todoList = useSelector(state => state.todos);
@@ -32,6 +31,7 @@ function Todos() {
                     <Button color="inherit" onClick={logout}>Logout</Button>
                 </Toolbar>
             </AppBar>
+            <CircProgress/>
             <Container maxWidth="md">
                 <h1 style={{textAlign: 'center'}}>Список задач</h1>
                 <Box textAlign='center'>
