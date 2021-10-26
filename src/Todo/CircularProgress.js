@@ -12,24 +12,8 @@ const useStyles = makeStyles((theme) => ({
 
 function CircProgress() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, ] = React.useState(false);
     
-    function getTodosProgress() {
-
-    }
-    
-    function addTodoProgress() {
-
-    }
-    
-    function removeTodoProgress() {
-
-    }
-    
-    function updateTodoProgress() {
-
-    }
-
     return (
         <Backdrop className={classes.backDrop} open={open}>
             <CircularProgress />

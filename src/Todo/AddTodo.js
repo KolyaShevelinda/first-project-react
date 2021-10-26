@@ -56,7 +56,7 @@ function AddTodo() {
                         name="todo"
                         control={control}
                         defaultValue=""
-                        render={({ field: { onChange, value }, fieldState: { error } }) => (
+                        render={({ field: { onChange, value }, fieldState: { error }}) => (
                             <TextField
                                 value={value}
                                 onChange={onChange}
