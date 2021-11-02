@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   span: {
     textIndent: '10px'
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
 }));
 
@@ -37,4 +40,4 @@ LoadingButton.propTypes = {
   loading: PropTypes.bool,
 };
 
-export default LoadingButton
+export default LoadingButton;
