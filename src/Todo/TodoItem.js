@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -11,7 +11,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Container from "@material-ui/core/Container";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {removeTodoAsync, updateTodoAsync} from "../redux/actions/todos.async.actions";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = {
     li: {
@@ -24,6 +24,10 @@ const styles = {
     },
     checked: {
         marginRight: '1rem'
+    },
+    loading: {
+        position: 'absolute',
+        left: '50%'
     }
 }
 
@@ -32,23 +36,32 @@ function TodoItem({todo, index}) {
     const classes = [];
     const label = {inputProps: {'aria-label': 'Checkbox'}};
     const [dense] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     if (todo.completed) {
         classes.push('done')
     }
 
-    function updateTodo(todo) {
-        dispatch(updateTodoAsync(todo))
+    async function updateTodo(todo) {
+        setIsLoading(true);
+        await dispatch(updateTodoAsync(todo));
+        setIsLoading(false);
     }
 
-    function deleteTodo(id) {
-        dispatch(removeTodoAsync(id))
+    async function deleteTodo(id) {
+        setIsLoading(true);
+        await dispatch(removeTodoAsync(id));
+        setIsLoading(false);
     }
 
     return (
         <Container maxWidth="md">
             <List dense={dense}>
                     <ListItem style={styles.li} role={undefined} dense>
+                        { isLoading && <CircularProgress
+                            size={18}
+                            style={{ 'marginRight': '10px', position: 'absolute', left: '50%'}} />}
                         <ListItemIcon>
                             <Checkbox {...label}
                                       checked={todo.completed}

@@ -11,6 +11,9 @@ const styles = {
 }
 
 function TodoList(props) {
+    if (!props.todos.length) {
+        return <h2 style={{textAlign: 'center'}}>Задач нет</h2>
+    }
     return (
         <ul style={styles.ul}>
             {props.todos.map((todo, index) => {
