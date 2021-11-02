@@ -2,7 +2,8 @@ import {
     ADD_TODO,
     TOGGLE_TODO,
     REMOVE_TODO,
-    SET_TODOS
+    SET_TODOS,
+    RESET_SNACKBARS
 }
     from "../actionTypes";
 
@@ -24,7 +25,7 @@ export const removeTodo = (id) => {
     return {
         type: REMOVE_TODO,
         payload: id
-}
+    }
 };
 
 export const setTodos = (todos) => {
@@ -33,3 +34,9 @@ export const setTodos = (todos) => {
         payload: todos
     }
 };
+
+export const resetSnackbars = () => {
+    return {
+        type: RESET_SNACKBARS
+    }
+}

@@ -3,7 +3,7 @@ import {addTodo, removeTodo, setTodos, toggleTodo} from "./todos.actions";
 export const getTodosAsync = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch('https://todo-base-627f7-default-rtdb.firebaseio.com/todos.json')
+            const response = await fetch('https://todo-base-627f7-default-rtdb.firebaseio.com/todos.json');
             const todos = await response.json();
             const keys = Object.keys(todos);
             const formattedTodos = keys.map(key => {
