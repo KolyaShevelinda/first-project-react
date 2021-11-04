@@ -3,7 +3,8 @@ import {
     REMOVE_TODO,
     TOGGLE_TODO,
     SET_TODOS,
-    RESET_MESSAGES
+    RESET_MESSAGES,
+    ADD_MESSAGE
 }
     from "../actionTypes";
 
@@ -46,6 +47,11 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 messages: []
+            };
+        case ADD_MESSAGE:
+            return {
+                ...state,
+                messages: [action.payload]
             };
         default:
             return state

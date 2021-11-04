@@ -3,7 +3,8 @@ import {
     TOGGLE_TODO,
     REMOVE_TODO,
     SET_TODOS,
-    RESET_MESSAGES
+    RESET_MESSAGES,
+    ADD_MESSAGE
 }
     from "../actionTypes";
 
@@ -39,4 +40,11 @@ export const resetMessages = () => {
     return {
         type: RESET_MESSAGES
     }
-}
+};
+
+export const addMessage = (message) => {
+    return {
+        type: ADD_MESSAGE,
+        payload: message
+    }
+};
