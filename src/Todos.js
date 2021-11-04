@@ -10,8 +10,7 @@ import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router-dom";
 import {getTodosAsync} from "./redux/actions/todos.async.actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import TodoMessages from "./Todo/TodoMessages";
 
 
 const styles = {
@@ -25,19 +24,12 @@ const styles = {
 
 function Todos() {
     const todoList = useSelector(state => state.todos);
-    const snackbars = useSelector(state => state.snackbars);
     const history = useHistory();
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
-    const [open, setIsOpen] = useState(true);
 
     function logout() {
         history.push("/")
-    }
-
-    function handleClose() {
-        setIsOpen(false);
-        console.log('hello');
     }
 
     useEffect(() => {
@@ -47,7 +39,6 @@ function Todos() {
             setIsLoading(false);
         }
         getTodoList();
-        document.title = 'Todos';
     }, [dispatch]);
 
     return (
@@ -67,11 +58,7 @@ function Todos() {
                 size={58}
                 style={styles.loading} />}
             { !isLoading && <TodoList todos={todoList}/> }
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                    This is a success message!
-                </Alert>
-            </Snackbar>
+            <TodoMessages/>
         </div>
     )
 }

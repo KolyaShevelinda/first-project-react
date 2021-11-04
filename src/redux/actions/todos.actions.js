@@ -3,7 +3,7 @@ import {
     TOGGLE_TODO,
     REMOVE_TODO,
     SET_TODOS,
-    RESET_SNACKBARS
+    RESET_MESSAGES
 }
     from "../actionTypes";
 
@@ -35,8 +35,8 @@ export const setTodos = (todos) => {
     }
 };
 
-export const resetSnackbars = () => {
+export const resetMessages = () => {
     return {
-        type: RESET_SNACKBARS
+        type: RESET_MESSAGES
     }
 }

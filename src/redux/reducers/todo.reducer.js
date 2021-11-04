@@ -3,13 +3,13 @@ import {
     REMOVE_TODO,
     TOGGLE_TODO,
     SET_TODOS,
-    RESET_SNACKBARS
+    RESET_MESSAGES
 }
     from "../actionTypes";
 
 const INITIAL_STATE = {
     todos: [],
-    snackbars : []
+    messages : []
 };
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +23,7 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 todos: [...state.todos, action.payload],
-                snackbars: [{msg: 'Добавлено успешно', type: 'info'}]
+                messages: [{msg: 'Добавлено успешно', type: 'info', isOpen: true}]
             };
         case TOGGLE_TODO:
             return {
@@ -34,18 +34,18 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
                     }
                     return todo
                 }),
-                snackbars: [{msg: 'Изменено успешно', type: 'info'}]
+                messages: [{msg: 'Изменено успешно', type: 'info', isOpen: true}]
             };
         case REMOVE_TODO:
             return {
                 ...state,
                 todos: state.todos.filter(todo => todo.id !== action.payload),
-                snackbars: [{msg: 'Удалено успешно', type: 'info'}]
+                messages: [{msg: 'Удалено успешно', type: 'info', isOpen: true}]
             };
-        case RESET_SNACKBARS:
+        case RESET_MESSAGES:
             return {
                 ...state,
-                snackbars: []
+                messages: []
             };
         default:
             return state
