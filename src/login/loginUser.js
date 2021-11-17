@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import  {signInWithEmailAndPassword, getAuth}  from "firebase/auth";
+import fbApp from '../fb'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,8 +38,18 @@ const useStyles = makeStyles((theme) => ({
 function LoginUser() {
     const history = useHistory();
     const { handleSubmit, control } = useForm();
-    const onSubmit = () => history.push("/todos");
     const classes = useStyles();
+    const auth = getAuth();
+
+    const onSubmit = async (data) => {
+        try {
+            const user = await signInWithEmailAndPassword(auth, data.email, data.password);
+            console.log(user);
+            history.push("/todos");
+        } catch(error) {
+            console.log(error);
+        }
+    };
 
     return (
         <Container maxWidth="md" className={classes.container}>
