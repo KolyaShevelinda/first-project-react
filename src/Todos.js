@@ -42,7 +42,7 @@ function Todos() {
     }, [dispatch]);
 
     return (
-        <div className="wrapper" style={{paddingTop: '0'}}>
+        <div className="wrapper" style={{paddingTop: '0', minHeight: '100vh', width: '100%'}}>
             <AppBar position="static">
                 <Toolbar>
                     <Button color="inherit" onClick={logout}>Logout</Button>

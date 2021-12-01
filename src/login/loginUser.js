@@ -7,7 +7,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import  {signInWithEmailAndPassword, getAuth}  from "firebase/auth";
-import fbApp from '../fb'
+import app from "../fb";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
